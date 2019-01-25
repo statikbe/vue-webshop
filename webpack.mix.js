@@ -70,6 +70,8 @@ mix
     //
     .js(path.join(sourcePaths.js, 'main.js'), publicPaths.js)
     .js(path.join(sourcePaths.js, 'docs.js'), publicPaths.js)
+    .js(path.join(sourcePaths.js, 'products-overview.js'), publicPaths.js)
+
     .eslint({ cache: true })
 
     //  CSS

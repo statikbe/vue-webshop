@@ -4,21 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/main.css">
     <title>Vue webshop</title>
 </head>
 <body>
     <div class="page-header">
         <div class="container">
-            div.u-flex
+            
         </div>
     </div>
-    <div class="page-main">
-        Main content
+    <div class="page-main" id="vue-products-overview">
+        <div class="section section--default">
+            <div class="container">
+                <h1>Products</h1>
+            </div>
+        </div>
+        <div class="section section--default">
+            <div class="container">
+                <div class="grid">
+                    <div class="grid__12 grid__3@med">
+                        <h4>Categorie</h4>
+                        <ul class="list list--unstyled">
+                            <li v-for="category in categories">
+                                <div class="form__item">
+                                    <input type="checkbox" :id="'category-' + category.id" :value="category.id" class="form__checkbox">
+                                    <label :for="'category-' + category.id" class="form__label">{{ category.name }}</label>
+                                </div>
+                            </li>
+                        </ul>
+                        <h4>Merk</h4>
+                        <ul class="list list--unstyled">
+                            <li v-for="brand in brands">
+                                <div class="form__item">
+                                    <input type="checkbox" :id="'brand-' + brand.id" :value="brand.id" class="form__checkbox">
+                                    <label :for="'brand-' + brand.id" class="form__label">{{ brand.name }}</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__12 grid__9@med">
+                        <div class="grid grid--3-col@med">
+                            <div class="grid__item" v-for="product in products">
+                                <h3>{{ getBrand(product.brand).name }} {{ product.name }}</h3>
+                                <img :src="product.colorways[0].images[0]" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="page-footer">
         <div class="container">
             Made with &hearts; by <a href="//www.statik.be/">Statik</a>
         </div>
     </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/products-overview.js"></script>
 </body>
 </html>

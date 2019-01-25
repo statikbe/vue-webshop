@@ -172,8 +172,8 @@ $input-icon-padding: ($input-padding-h * 2);
         @include transitions(color);
         @include fsRem(18px);
         position: absolute;
+        top: -2px;
         left: 0;
-        top: -1px;
       }
     }
 
