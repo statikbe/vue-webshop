@@ -1,0 +1,230 @@
+$spacing-breakpoints: ();
+$spacing-rhythm: (sml med lrg);
+
+.u-ml {
+
+  @each $rh in $spacing-rhythm {
+
+    &-#{$rh} {
+      margin-left: map-get($rhythm, $rh);
+    }
+
+    &-a {
+      margin-left: auto;
+    }
+
+    &-0 {
+      margin-left: 0;
+    }
+
+    @each $bp in $spacing-breakpoints {
+
+      @include breakpoint($bp) {
+
+        &-#{$rh}\@#{$bp} {
+          margin-left: map-get($rhythm, $rh);
+        }
+
+        &-a\@#{$bp} {
+          margin-left: auto;
+        }
+
+        &-0\@#{$bp} {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.u-mr {
+
+  @each $rh in $spacing-rhythm {
+
+    &-#{$rh} {
+      margin-right: map-get($rhythm, $rh);
+    }
+
+    &-a {
+      margin-right: auto;
+    }
+
+    &-0 {
+      margin-right: 0;
+    }
+
+    @each $bp in $spacing-breakpoints {
+
+      @include breakpoint($bp) {
+
+        &-#{$rh}\@#{$bp} {
+          margin-right: map-get($rhythm, $rh);
+        }
+
+        &-a\@#{$bp} {
+          margin-right: auto;
+        }
+
+        &-0\@#{$bp} {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.u-mt {
+
+  @each $rh in $spacing-rhythm {
+
+    &-#{$rh} {
+      margin-top: map-get($rhythm, $rh);
+    }
+
+    &-a {
+      margin-top: auto;
+    }
+
+    &-0 {
+      margin-top: 0;
+    }
+
+    @each $bp in $spacing-breakpoints {
+
+      @include breakpoint($bp) {
+
+        &-#{$rh}\@#{$bp} {
+          margin-top: map-get($rhythm, $rh);
+        }
+
+        &-a\@#{$bp} {
+          margin-top: auto;
+        }
+
+        &-0\@#{$bp} {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.u-mb {
+
+  @each $rh in $spacing-rhythm {
+
+    &-#{$rh} {
+      margin-bottom: map-get($rhythm, $rh);
+    }
+
+    &-a {
+      margin-bottom: auto;
+    }
+
+    &-0 {
+      margin-bottom: 0;
+    }
+
+    @each $bp in $spacing-breakpoints {
+
+      @include breakpoint($bp) {
+
+        &-#{$rh}\@#{$bp} {
+          margin-bottom: map-get($rhythm, $rh);
+        }
+
+        &-a\@#{$bp} {
+          margin-bottom: auto;
+        }
+
+        &-0\@#{$bp} {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.u-mh {
+
+  @each $rh in $spacing-rhythm {
+
+    &-#{$rh} {
+      margin-left: map-get($rhythm, $rh);
+      margin-right: map-get($rhythm, $rh);
+    }
+
+    &-a {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &-0 {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    @each $bp in $spacing-breakpoints {
+
+      @include breakpoint($bp) {
+
+        &-#{$rh}\@#{$bp} {
+          margin-left: map-get($rhythm, $rh);
+          margin-right: map-get($rhythm, $rh);
+        }
+
+        &-a\@#{$bp} {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        &-0\@#{$bp} {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.u-mv {
+
+  @each $rh in $spacing-rhythm {
+
+    &-#{$rh} {
+      margin-top: map-get($rhythm, $rh);
+      margin-bottom: map-get($rhythm, $rh);
+    }
+
+    &-a {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    &-0 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    @each $bp in $spacing-breakpoints {
+
+      @include breakpoint($bp) {
+
+        &-#{$rh}\@#{$bp} {
+          margin-top: map-get($rhythm, $rh);
+          margin-bottom: map-get($rhythm, $rh);
+        }
+
+        &-a\@#{$bp} {
+          margin-top: auto;
+          margin-bottom: auto;
+        }
+
+        &-0\@#{$bp} {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

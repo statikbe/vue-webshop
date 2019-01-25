@@ -1,0 +1,78 @@
+$list-item-spacing: $rh-xxs;
+
+%list {
+
+  @include listreset();
+  margin: 0 0 $rh-sml;
+
+  li {
+
+    position: relative;
+    padding-left: $rh-sml;
+
+    + li {
+      margin-top: $list-item-spacing;
+    }
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      color: $color-primary;
+    }
+  }
+
+  ul, ol {
+    @include listreset();
+    margin-bottom: 0;
+  }
+}
+
+%unordered-list {
+
+  @extend %list;
+
+  li {
+    &:before {
+      @extend %ext-icon;
+      @extend %ext-icon-arrow-right;
+    }
+  }
+}
+%ordered-list {
+
+  @extend %list;
+  counter-reset: orderedList;
+
+  li {
+    &:before {
+      content: counter(orderedList) '.';
+      counter-increment: orderedList;
+    }
+    ol {
+      counter-reset: orderedList;
+    }
+  }
+}
+
+.list--unordered {
+  @extend %unordered-list;
+}
+.list--ordered {
+  @extend %ordered-list;
+}
+
+.list {
+  &--reset {
+    @include listreset;
+  }
+  &--unstyled {
+    @include listreset(soft);
+    li {
+      + li {
+        margin-top: $list-item-spacing;
+      }
+    }
+  }
+}
