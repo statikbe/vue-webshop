@@ -1,4 +1,4 @@
-# webpack
+# Vue webshop
 
 ```
 yarn
