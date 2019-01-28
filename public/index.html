@@ -28,7 +28,7 @@
                         <ul class="list list--unstyled">
                             <li v-for="category in categories">
                                 <div class="form__item">
-                                    <input type="checkbox" :id="'category-' + category.id" :value="category.id" v-model="checkedFilters" class="form__checkbox">
+                                    <input type="checkbox" :id="'category-' + category.id" :value="category.id" v-model="checkedCategories" class="form__checkbox">
                                     <label :for="'category-' + category.id" class="form__label">{{ category.name }}</label>
                                 </div>
                             </li>
@@ -37,7 +37,7 @@
                         <ul class="list list--unstyled">
                             <li v-for="brand in brands">
                                 <div class="form__item">
-                                    <input type="checkbox" :id="'brand-' + brand.id" :value="brand.id" class="form__checkbox">
+                                    <input type="checkbox" :id="'brand-' + brand.id" :value="brand.id" v-model="checkedBrands" class="form__checkbox">
                                     <label :for="'brand-' + brand.id" class="form__label">{{ brand.name }}</label>
                                 </div>
                             </li>
@@ -45,14 +45,11 @@
                     </div>
                     <!-- Main -->
                     <div class="grid__12 grid__9@med">
-                        <div class="grid grid--3-col@med">
-                            <div class="grid__item" v-for="product in filteredProducts">
-                                <div v-if="">
-                                    <h3>{{ getBrand(product.brand).name }} {{ product.name }}</h3>
-                                    <img :src="product.colorways[0].images[0]" alt="">
-                                </div>
-                            </div>
-                        </div>
+                        <component 
+                            :is="currentView" 
+                            :filtered-products="filteredProducts" 
+                            :brands="brands"
+                            :product-detail="productDetail"></component>
                     </div>
                 </div>
             </div>
