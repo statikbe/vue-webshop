@@ -44,12 +44,20 @@
                         </ul>
                     </div>
                     <!-- Main -->
-                    <div class="grid__12 grid__9@med">
+                    <div class="grid__12 grid__9@med overview">
+
+                        <button @click="currentView = 'cart'" class="overview__cart">View cart 
+                            <transition name="cart-counter">
+                                <span class="cart__counter" v-if="cart.length">{{ cart.length }}</span>
+                            </transition>
+                        </button>
+
                         <component 
                             :is="currentView" 
                             :filtered-products="filteredProducts" 
                             :brands="brands"
-                            :product-detail="productDetail"></component>
+                            :product-detail="productDetail"
+                            :cart="cart"></component>
                     </div>
                 </div>
             </div>
