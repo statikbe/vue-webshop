@@ -230,8 +230,8 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/niels/Projects/vue-webshop/takeoff/js/main.js */"./takeoff/js/main.js");
-module.exports = __webpack_require__(/*! /Users/niels/Projects/vue-webshop/takeoff/sass/main.scss */"./takeoff/sass/main.scss");
+__webpack_require__(/*! /Users/wouterdeloof/Sites/Vue/webshop/takeoff/js/main.js */"./takeoff/js/main.js");
+module.exports = __webpack_require__(/*! /Users/wouterdeloof/Sites/Vue/webshop/takeoff/sass/main.scss */"./takeoff/sass/main.scss");
 
 
 /***/ })

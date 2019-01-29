@@ -17,7 +17,7 @@ $.when(
                    <div>
                        <h3>{{ getBrand(product.brand).name }} {{ product.name }}</h3>
                        <img :src="product.colorways[0].images[0]" alt="">
-                       <addToCart></addToCart>
+                       <addToCart :product="product"></addToCart>
                    </div>
                </div>
            </div>
@@ -38,18 +38,18 @@ $.when(
         `,
         methods: {
             setOverview() {
-                app.$emit('setOverview')
+                app.$emit('setOverview');
             }
         }
-    })
+    });
 
     Vue.component('detail', {
-        props: ['product-detail'],
+        props: ['product-detail', 'color-images'],
         template: `
         <div>
             <h1>{{ productDetail.name }} - €{{ productDetail.price }}</h1>
             <toOverview></toOverview>
-            <addToCart></addToCart>
+            <addToCart :product="productDetail"></addToCart>
             <p>This hoodie is awesome, trust me.</p>
             <h3>Colors:</h3>
             <ul>
@@ -65,7 +65,7 @@ $.when(
                     <div class="thumbnails__item" v-for="image in colorImages"></div>
                 </div>
             </div>
-            <addToCart></addToCart>
+            <addToCart :product="productDetail"></addToCart>
         </div>
         `,
         methods: {
@@ -79,12 +79,13 @@ $.when(
     });
 
     Vue.component('addToCart', {
+        props: ['product'],
         template: `
             <button @click="addToCart">Add to cart</button>
         `,
         methods: {
             addToCart() {
-                app.$emit('addToCart', 'item');
+                app.$emit('addToCart', this.product);
             }
         }
     });
@@ -96,18 +97,17 @@ $.when(
                 <h1>Cart</h1>
                 <toOverview></toOverview>
                 <ul v-if="cart.length">
-                    <li v-for="item in cart">
-                        {{ item }}
-                        <button @click="removeFromCart">Remove from cart</button>
+                    <li v-for="product in cart">
+                        {{ product.name }}
+                        <button @click="removeFromCart(product)">Remove from cart</button>
                     </li>
                 </ul>
                 <p v-else>Buy something! Now!</p>
             </div>
         `,
         methods: {
-            removeFromCart(e) {
-                console.log(e);
-                app.$emit('removeFromCart', 'data');
+            removeFromCart(product) {
+                app.$emit('removeFromCart', product);
             }
         }
     });
@@ -125,6 +125,8 @@ $.when(
             currentView: "overview",
             productDetail: {},
             cart: [],
+            cartCounter: 1,
+            colorImages: [],
         },
         computed: {
             // Using single array for all filters -> needs more specific values! e.g. not 'brand: 1', but 'brand: "adidas"'
@@ -173,11 +175,14 @@ $.when(
                 this.currentView = 'overview';
             });
             this.$on('addToCart', data => {
+                data.cartId = this.cartCounter;
+                this.cartCounter++;
                 this.cart.push(data);
             });
-            this.$on('removeFromCart', (index) => {
+            this.$on('removeFromCart', (data) => {
+                const index = this.cart.findIndex(item => item.cartId === data.cartId);
                 this.cart.splice(index, 1); // Needs to be checked!!!!!!!!!!
-            })
+            });
 
             // Get cart info from local storage
             // Change cart info in local storage

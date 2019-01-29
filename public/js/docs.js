@@ -309,7 +309,7 @@ eval("window.Parsley.addCatalog('nl', {\n  defaultMessage: 'Deze waarde lijkt on
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/niels/Projects/vue-webshop/takeoff/js/docs.js */"./takeoff/js/docs.js");
+module.exports = __webpack_require__(/*! /Users/wouterdeloof/Sites/Vue/webshop/takeoff/js/docs.js */"./takeoff/js/docs.js");
 
 
 /***/ })
