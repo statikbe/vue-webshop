@@ -2,19 +2,22 @@
 
 import $ from 'jquery';
 import Vue from 'vue';
+import queryString from 'query-string';
 
 $.when(
     getBrands(),
     getCategories(),
     getProducts()
 ).done(function (brandData, categoryData, productData) {
+
+    const productId = queryString.parse(location.search).id;
+    
+    console.log(productId);
     
     new Vue({
-        el: '#vue-products-overview',
+        el: '#vue-product-detail',
         data: {
-            brands: brandData[0],
-            categories: categoryData[0],
-            products: productData[0]
+            product: productData[0].find(product => product.id == productId)
         },
         methods: {
             getBrand(id) {

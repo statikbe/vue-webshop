@@ -293,3 +293,11 @@
 .icon--search:before {
   @extend %ext-icon-search;
 }
+
+%ext-icon-shopping-cart {
+  content: '\f121';
+}
+
+.icon--shopping-cart:before {
+  @extend %ext-icon-shopping-cart;
+}

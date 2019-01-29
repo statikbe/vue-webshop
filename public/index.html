@@ -10,7 +10,17 @@
 <body>
     <div class="page-header">
         <div class="container">
-            
+            <div class="flex">
+                <a href="/">
+                    Hypebeast Store 69
+                </a>
+                <a href="/cart.html" class="u-ml-a">
+                    <span class="icon icon--shopping-cart"></span>
+                </a>
+                <a href="/cart.html" class="u-ml-sml">
+                    <span class="icon icon--search"></span>
+                </a>
+            </div>
         </div>
     </div>
     <div class="page-main" id="vue-products-overview">
@@ -24,7 +34,7 @@
                 <div class="grid">
                     <div class="grid__12 grid__3@med">
                         <h4>Categorie</h4>
-                        <ul class="list list--unstyled">
+                        <ul class="list list--unstyled" v-cloak>
                             <li v-for="category in categories">
                                 <div class="form__item">
                                     <input type="checkbox" :id="'category-' + category.id" :value="category.id" class="form__checkbox">
@@ -33,7 +43,7 @@
                             </li>
                         </ul>
                         <h4>Merk</h4>
-                        <ul class="list list--unstyled">
+                        <ul class="list list--unstyled" v-cloak>
                             <li v-for="brand in brands">
                                 <div class="form__item">
                                     <input type="checkbox" :id="'brand-' + brand.id" :value="brand.id" class="form__checkbox">
@@ -43,10 +53,15 @@
                         </ul>
                     </div>
                     <div class="grid__12 grid__9@med">
-                        <div class="grid grid--3-col@med">
+                        <div class="grid grid--3-col@med" v-cloak>
                             <div class="grid__item" v-for="product in products">
-                                <h3>{{ getBrand(product.brand).name }} {{ product.name }}</h3>
-                                <img :src="product.colorways[0].images[0]" alt="">
+                                <a :href="`/product.html?id=${product.id}`" class="card card--link">
+                                    <h3 class="card__title">
+                                        {{ getBrand(product.brand).name }}<br>
+                                        <small>{{ product.name }}</small>
+                                    </h3>
+                                    <img :src="product.colorways[0].images[0]" alt="" class="card__img">
+                                </a>
                             </div>
                         </div>
                     </div>

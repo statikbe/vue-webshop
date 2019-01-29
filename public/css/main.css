@@ -612,6 +612,10 @@ svg {
   fill: currentColor;
 }
 
+[v-cloak] {
+  display: none;
+}
+
 .flyout__link:before, .pagination__next:after, .pagination__prev:before, .breadcrumb__scope + .breadcrumb__scope:before, .form__icon--select:after, .form__checkbox + .form__label:before, .form__radio + .form__label:before, .link--ext:after, .list--unordered li:before, .btn--ext:after, .icon:before {
   display: inline-block;
   border: none;
@@ -766,6 +770,10 @@ svg {
 
 .icon--search:before {
   content: "\F120";
+}
+
+.icon--shopping-cart:before {
+  content: "\F121";
 }
 
 .container {
