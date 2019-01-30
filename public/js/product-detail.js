@@ -208,7 +208,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jque
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/niels/Projects/vue-webshop/takeoff/js/product-detail.js */"./takeoff/js/product-detail.js");
+module.exports = __webpack_require__(/*! /Users/wouterdeloof/Sites/Vue/vue-webshop/takeoff/js/product-detail.js */"./takeoff/js/product-detail.js");
 
 
 /***/ })

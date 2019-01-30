@@ -2,19 +2,32 @@
 
 import $ from 'jquery';
 import Vue from 'vue';
+import {
+    PageHeader,
+    PageFooter
+} from './components';
 
 $.when(
     getBrands(),
     getCategories(),
     getProducts()
 ).done(function (brandData, categoryData, productData) {
-    
-    new Vue({
-        el: '#vue-products-overview',
+
+    const app = new Vue({
+        el: '#app',
         data: {
             brands: brandData[0],
             categories: categoryData[0],
-            products: productData[0]
+            products: productData[0],
+            filterCategories: [],
+            filterBrands: [],
+        },
+        computed: {
+            filteredProducts() {
+                return this.products
+                .filter(product => this.filterCategories.length ? this.filterCategories.includes(product.category) : this.products)
+                .filter(product => this.filterBrands.length     ? this.filterBrands.includes(product.brand)        : this.products);
+            }
         },
         methods: {
             getBrand(id) {
@@ -23,8 +36,9 @@ $.when(
             getCategory(id) {
                 return categoryData[0].find(category => category.id == id);
             }
-        }
+        },
     });
+
 });
 
 function getBrands() {

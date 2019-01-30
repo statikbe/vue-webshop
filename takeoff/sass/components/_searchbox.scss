@@ -1,0 +1,96 @@
+.search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: $zindex-layer-5;
+
+  &__form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    border: 5px solid $color-primary;
+    padding: 35px 50px;
+    opacity: 1;
+
+    // Vue transitions
+    &-enter {
+      top: 50%;
+      transform: translate(60vw , -50%);
+      &-active {
+        transition: all .5s;
+      }
+      &-to {}
+    }
+
+    &-leave {
+      &-active {
+        transition: all .5s;
+      }
+      &-to {
+        top: 50%;
+        transform: translate(-60vw , -50%);
+      }
+    }
+
+  }
+
+  &__close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background-color: none;
+    outline: none;
+  }
+
+  &__overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(#000, .3);
+    z-index: 0;
+
+    // Vue transitions
+    &-enter {
+      opacity: 0;
+      &-active {
+        transition: all .5s;
+      }
+      &-to {}
+    }
+
+    &-leave {
+      &-active {
+        transition: all .5s .5s;
+      }
+      &-to {
+        opacity: 0;
+      }
+    }
+  }
+
+}
+
+// Vue transitions
+.fade {
+    &-enter {
+      opacity: 0;
+      &-active {
+        transition: all .5s;
+      }
+      &-to {}
+    }
+
+    &-leave {
+      &-active {
+        transition: all .5s;
+      }
+      &-to {
+        opacity: 0;
+      }
+    }
+}

@@ -8,21 +8,10 @@
     <title>Vue webshop</title>
 </head>
 <body>
-    <div class="page-header">
-        <div class="container">
-            <div class="flex">
-                <a href="/">
-                    Hypebeast Store 69
-                </a>
-                <a href="/cart.html" class="u-ml-a">
-                    <span class="icon icon--shopping-cart"></span>
-                </a>
-                <a href="/cart.html" class="u-ml-sml">
-                    <span class="icon icon--search"></span>
-                </a>
-            </div>
-        </div>
-    </div>
+    <div id="app">
+
+    <page-header></page-header>
+
     <div class="page-main" id="vue-products-overview">
         <div class="section section--default">
             <div class="container">
@@ -32,12 +21,13 @@
         <div class="section section--default">
             <div class="container">
                 <div class="grid">
+
                     <div class="grid__12 grid__3@med">
                         <h4>Categorie</h4>
                         <ul class="list list--unstyled" v-cloak>
                             <li v-for="category in categories">
                                 <div class="form__item">
-                                    <input type="checkbox" :id="'category-' + category.id" :value="category.id" class="form__checkbox">
+                                    <input type="checkbox" :id="'category-' + category.id" :value="category.id" v-model="filterCategories" class="form__checkbox">
                                     <label :for="'category-' + category.id" class="form__label">{{ category.name }}</label>
                                 </div>
                             </li>
@@ -46,15 +36,16 @@
                         <ul class="list list--unstyled" v-cloak>
                             <li v-for="brand in brands">
                                 <div class="form__item">
-                                    <input type="checkbox" :id="'brand-' + brand.id" :value="brand.id" class="form__checkbox">
+                                    <input type="checkbox" :id="'brand-' + brand.id" :value="brand.id" v-model="filterBrands" class="form__checkbox">
                                     <label :for="'brand-' + brand.id" class="form__label">{{ brand.name }}</label>
                                 </div>
                             </li>
                         </ul>
                     </div>
+
                     <div class="grid__12 grid__9@med">
                         <div class="grid grid--3-col@med" v-cloak>
-                            <div class="grid__item" v-for="product in products">
+                            <div class="grid__item" v-for="product in filteredProducts">
                                 <a :href="`/product.html?id=${product.id}`" class="card card--link">
                                     <h3 class="card__title">
                                         {{ getBrand(product.brand).name }}<br>
@@ -69,10 +60,9 @@
             </div>
         </div>
     </div>
-    <div class="page-footer">
-        <div class="container">
-            Made with &hearts; by <a href="//www.statik.be/">Statik</a>
-        </div>
+
+    <page-footer></page-footer>
+
     </div>
     <script src="/js/main.js"></script>
     <script src="/js/products-overview.js"></script>

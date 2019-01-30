@@ -2969,6 +2969,88 @@ a.card:hover .card__link, a.card:focus .card__link,
   margin-bottom: 24px;
 }
 
+.search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2050;
+}
+.search__form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 5px solid #119988;
+  padding: 35px 50px;
+  opacity: 1;
+}
+.search__form-enter {
+  top: 50%;
+  -webkit-transform: translate(60vw, -50%);
+          transform: translate(60vw, -50%);
+}
+.search__form-enter-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.search__form-leave-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.search__form-leave-to {
+  top: 50%;
+  -webkit-transform: translate(-60vw, -50%);
+          transform: translate(-60vw, -50%);
+}
+.search__close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background-color: none;
+  outline: none;
+}
+.search__overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 0;
+}
+.search__overlay-enter {
+  opacity: 0;
+}
+.search__overlay-enter-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.search__overlay-leave-active {
+  -webkit-transition: all 0.5s 0.5s;
+  transition: all 0.5s 0.5s;
+}
+.search__overlay-leave-to {
+  opacity: 0;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.fade-leave-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
 .map {
   position: relative;
 }
