@@ -3,6 +3,12 @@
 import $ from 'jquery';
 import Vue from 'vue';
 import queryString from 'query-string';
+import {
+    eventBus,
+    PageHeader,
+    PageFooter,
+    Search
+} from './components';
 
 $.when(
     getBrands(),
@@ -11,13 +17,16 @@ $.when(
 ).done(function (brandData, categoryData, productData) {
 
     const productId = queryString.parse(location.search).id;
-    
-    console.log(productId);
-    
+
     new Vue({
-        el: '#vue-product-detail',
+        el: '#app-detail',
         data: {
-            product: productData[0].find(product => product.id == productId)
+            product: productData[0].find(product => product.id == productId),
+            detail: {
+                imageUrl: '',
+                alt: ''
+            },
+            color: '',
         },
         methods: {
             getBrand(id) {
@@ -25,7 +34,17 @@ $.when(
             },
             getCategory(id) {
                 return categoryData[0].find(category => category.id == id);
+            },
+            addToCart() {
+                eventBus.$emit('addToCart', this.product);
+            },
+            setImage() {
+                this.detail.imageUrl = this.product.colorways[0].images[0];
+                this.detail.alt = this.product.colorways[0].name;
             }
+        },
+        created() {
+            this.setImage();
         }
     });
 });

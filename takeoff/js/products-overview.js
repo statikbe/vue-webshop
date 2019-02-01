@@ -4,7 +4,9 @@ import $ from 'jquery';
 import Vue from 'vue';
 import {
     PageHeader,
-    PageFooter
+    PageFooter,
+    Search,
+    removeButton
 } from './components';
 
 $.when(
@@ -19,14 +21,13 @@ $.when(
             brands: brandData[0],
             categories: categoryData[0],
             products: productData[0],
-            filterCategories: [],
-            filterBrands: [],
+            filter: { categories: [], brands: []},
         },
         computed: {
             filteredProducts() {
-                return this.products
-                .filter(product => this.filterCategories.length ? this.filterCategories.includes(product.category) : this.products)
-                .filter(product => this.filterBrands.length     ? this.filterBrands.includes(product.brand)        : this.products);
+                const categories = this.filter.categories;
+                const brands = this.filter.brands;
+                return this.products.filter(product => (categories.includes(product.category) || categories.length === 0) && (brands.includes(product.brand) || brands.length === 0) );
             }
         },
         methods: {

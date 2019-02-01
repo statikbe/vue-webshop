@@ -1,11 +1,42 @@
 import Vue from 'vue';
 
-const eventBus = new Vue();
+export const eventBus = new Vue({
+    data() {
+        return {
+            cart: [],
+        };
+    },
+    created() {
+        this.$on('addToCart', (product) => {
+            localStorage.cartCounter ? localStorage.cartCounter++ : localStorage.cartCounter = 0;
+            product.cartId = localStorage.cartCounter;
+            if(localStorage.myCart) {
+                this.cart = JSON.parse(localStorage.myCart);
+            }
+            this.cart.push(product);
+            localStorage.myCart = JSON.stringify(this.cart);
+            this.$emit('setCartCount');
+        });
+        this.$on('removeFromCart', (product) => {
+            if(localStorage.myCart) {
+                this.cart = JSON.parse(localStorage.myCart);
+            }
+            const index = this.cart.findIndex( item => {
+                return item.cartId === product.cartId;
+            });
+            this.cart.splice(index, 1);
+            localStorage.myCart = JSON.stringify(this.cart);
+            this.$emit('setCartCount');
+            this.$emit('updateCart');
+        });
+    }
+});
 
 export const PageHeader = Vue.component('page-header',{
     data: function() {
         return {
             searchIsActive: false,
+            cartCount: 0,
         };
     },
     template: `
@@ -16,6 +47,7 @@ export const PageHeader = Vue.component('page-header',{
                         Hypebeast Store 69
                     </a>
                     <a href="/cart.html" class="u-ml-a">
+                        <span v-if="cartCount">{{ cartCount }}</span>
                         <span class="icon icon--shopping-cart"></span>
                     </a>
                     <a href="#" class="u-ml-sml">
@@ -28,10 +60,16 @@ export const PageHeader = Vue.component('page-header',{
             </div>
         </div>
     `,
+    methods: {
+        getCartCount() {
+            if(localStorage.myCart) {
+                this.cartCount = JSON.parse(localStorage.myCart).length;
+            }
+        }
+    },
     created() {
-        eventBus.$on('closeSearchBox', () => {
-            this.searchIsActive = !this.searchIsActive;
-        })
+        this.getCartCount();
+        eventBus.$on( 'setCartCount', () => { this.getCartCount(); } );
     }
 });
 
@@ -61,15 +99,31 @@ export const Search = Vue.component('searchbox',{
                 <form class="search__form" v-show="searchIsActive">
                     <input type="text" @keyup.escape="closeSearchBox">
                     <button>Search</button>
-                    <button class="search__close" @click="closeSearchBox">X</button>
+                    <button class="search__close" @click="closeSearchBox(e)"><span class="icon icon--clear"></span></button>
                 </form>
             </transition>
 
         </div>
     `,
     methods: {
-        closeSearchBox() {
+        closeSearchBox(e) {
+            console.log();
+            e.preventDefault();
             eventBus.$emit('closeSearchBox');
+        }
+    }
+});
+
+export const removeButton = Vue.component('remove-button',{
+    props: ['product'],
+    template: `
+        <button @click="removeFromCart">
+            <span class="icon icon--clear"></span>
+        </button>
+    `,
+    methods: {
+        removeFromCart() {
+            eventBus.$emit('removeFromCart', this.product);
         }
     }
 });

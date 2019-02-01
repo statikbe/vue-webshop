@@ -27,7 +27,7 @@
                         <ul class="list list--unstyled" v-cloak>
                             <li v-for="category in categories">
                                 <div class="form__item">
-                                    <input type="checkbox" :id="'category-' + category.id" :value="category.id" v-model="filterCategories" class="form__checkbox">
+                                    <input type="checkbox" :id="'category-' + category.id" :value="category.id" v-model="filter.categories" class="form__checkbox">
                                     <label :for="'category-' + category.id" class="form__label">{{ category.name }}</label>
                                 </div>
                             </li>
@@ -36,7 +36,7 @@
                         <ul class="list list--unstyled" v-cloak>
                             <li v-for="brand in brands">
                                 <div class="form__item">
-                                    <input type="checkbox" :id="'brand-' + brand.id" :value="brand.id" v-model="filterBrands" class="form__checkbox">
+                                    <input type="checkbox" :id="'brand-' + brand.id" :value="brand.id" v-model="filter.brands" class="form__checkbox">
                                     <label :for="'brand-' + brand.id" class="form__label">{{ brand.name }}</label>
                                 </div>
                             </li>

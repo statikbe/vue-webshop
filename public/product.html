@@ -8,37 +8,32 @@
     <title>Vue webshop</title>
 </head>
 <body>
-    <div class="page-header">
-        <div class="container">
-            <div class="flex">
-                <a href="/">
-                    Hypebeast Store 69
-                </a>
-                <a href="/cart.html" class="u-ml-a">
-                    <span class="icon icon--shopping-cart"></span>
-                </a>
-                <a href="/cart.html" class="u-ml-sml">
-                    <span class="icon icon--search"></span>
-                </a>
+    <div id="app-detail">
+        <page-header></page-header>   
+        <div class="page-main">
+            <div class="section section--default">
+                <div class="container">
+                    <h1>{{ product.name }}</h1>
+                    <h2>{{ getBrand(product.brand).name }}</h2>
+                    <h3>€{{ product.price }}</h3>
+                    <button @click="addToCart">Add to cart</button>
+                    <select name="colors" :value="color" @change="color = $event.target.value">
+                        <option v-for="color in product.colorways" :value="color.name">
+                            {{ color.name }}
+                        </option>
+                    </select>
+                    <p>color: {{ color }}</p>
+                    <img :src="detail.imageUrl" :alt="detail.alt">
+                    <button @click="addToCart">Add to cart</button>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="page-main" id="vue-product-detail">
-        <div class="section section--default">
-            <div class="container">
-                <h1>{{ getBrand(product.brand).name }} {{ product.name }}</h1>
-            </div>
-        </div>
-        <div class="section section--default">
-            <div class="container">
+            <div class="section section--default">
+                <div class="container">
 
+                </div>
             </div>
         </div>
-    </div>
-    <div class="page-footer">
-        <div class="container">
-            Made with &hearts; by <a href="//www.statik.be/">Statik</a>
-        </div>
+        <page-footer></page-footer>
     </div>
     <script src="/js/main.js"></script>
     <script src="/js/product-detail.js"></script>

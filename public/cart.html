@@ -8,33 +8,27 @@
     <title>Vue webshop</title>
 </head>
 <body>
-    <div class="page-header">
-        <div class="container">
-            <div class="flex">
-                <a href="/">
-                    Hypebeast Store 69
-                </a>
-                <a href="/cart.html" class="u-ml-a">
-                    <span class="icon icon--shopping-cart"></span>
-                </a>
-                <a href="/cart.html" class="u-ml-sml">
-                    <span class="icon icon--search"></span>
-                </a>
+    <div id="app-cart">
+
+        <page-header></page-header>
+
+        <div class="page-main">
+            <div class="section section--default">
+                <div class="container">
+                    <h1>Shopping cart</h1>
+                    <ul>
+                        <li v-for="product in cart">
+                            <span>{{ product.name }}</span> <remove-button :product="product"></remove-button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+
+        <page-footer></page-footer>
+
     </div>
-    <div class="page-main" id="vue-product-detail">
-        <div class="section section--default">
-            <div class="container">
-                <h1>Shopping cart</h1>
-            </div>
-        </div>
-    </div>
-    <div class="page-footer">
-        <div class="container">
-            Made with &hearts; by <a href="//www.statik.be/">Statik</a>
-        </div>
-    </div>
+
     <script src="/js/main.js"></script>
     <script src="/js/cart.js"></script>
 </body>
